@@ -36,16 +36,18 @@ class Timer {
         this.onTick = onTick;
         this.isActive = isActive;
         this.convertMs = convertMs;
+        this.intervalId = null;
     }
 
     start(){
         if (this.isActive) return;
+        if (!userSelectedDate) return;
         
         this.isActive = true;
         button.disabled = true;
         input.disabled = true;
 
-        setInterval(() => {
+        this.intervalId = setInterval(() => {
             const deltaTime = userSelectedDate - Date.now();
 
             if (deltaTime <= 0) {
@@ -57,23 +59,14 @@ class Timer {
         }, 1000)
     }
 
-    // getTimeComponent(time){
-    //     const second = 1000;
-    //     const minute = second * 60;
-    //     const hour = minute * 60;
-    //     const day = hour * 24;
-      
-    //     return {
-    //         days: String(Math.floor(time / day)).padStart(2, "0"),
-    //         hours: String(Math.floor((time % day) / hour)).padStart(2, "0"),
-    //         minutes: String(Math.floor((time % hour) / minute)).padStart(2, "0"),
-    //         seconds: String(Math.floor((time % minute) / second)).padStart(2, "0"),
-    //       };
-    // }
-
     stop() {
         this.isActive = false;
         input.disabled = false;
+
+        if (this.intervalId) {
+            clearInterval(this.intervalId); 
+            this.intervalId = null;
+        }
       }
     
 }
