@@ -4,6 +4,7 @@
   | default @import url()
   |============================
 */
+
 /* Common styles */
 @import url('./reset.css');
 @import url('./base.css');
@@ -12,7 +13,7 @@
 
 /* Sections style */
 @import url('./header.css');
-@import url('./vite-promo.css');
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+@import url('./timer.css');
